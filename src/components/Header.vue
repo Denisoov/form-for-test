@@ -7,8 +7,8 @@
       <v-spacer></v-spacer>
       <div class="menu">
         <router-link class="link" to="/">Главная</router-link>
-        <router-link class="link" to="/2">Войти</router-link>
-        <router-link class="link" to="/3">Регистрация</router-link>
+        <router-link class="link" to="/auth">Войти</router-link>
+        <router-link class="link" to="/registration">Регистрация</router-link>
       </div>
     </v-app-bar>
 </template>
