@@ -17,7 +17,7 @@
           id="username"
           append-icon="mdi-account"
           v-model="loginData.username"
-          :rules="usernameRules"
+          :rules="Validation.usernameRules"
           label="Логин"
           rounded
           background-color="#F7F6FF"
@@ -26,7 +26,7 @@
           rounded
           append-icon="mdi-lock"
           v-model="loginData.password"
-          :rules="passwordRules"
+          :rules="Validation.passwordRules"
           label="Пароль"
           background-color="#F7F6FF"
         ></v-text-field>
@@ -53,21 +53,17 @@
 </template>
 
 <script>
+
+import { Validation } from '@/services/validation'
+
 export default {
   data: () => ({
     validSignIn: true,
+    Validation,
     loginData: {
       username: null,
       password: null
-    },
-    usernameRules: [
-      valid => !!valid || 'Поле не заполнено',
-      valid => (valid && valid.length <= 10) || 'Логин не должен превышать 12 символов'
-    ],
-    passwordRules: [
-      valid => !!valid || 'Поле не заполнено'
-      // valid => /.+@.+\..+/.test(valid) || 'Пароль должен быть валидным'
-    ]
+    }
   }),
   methods: {
     directToPage () {

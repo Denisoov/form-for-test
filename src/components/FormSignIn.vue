@@ -23,7 +23,6 @@
             id="username"
             append-icon="mdi-account"
             v-model="signInData.username"
-            :rules="usernameRules"
             label="Логин"
             rounded
             background-color="#F7F6FF"
@@ -32,7 +31,6 @@
             rounded
             append-icon="mdi-lock"
             v-model="signInData.password"
-            :rules="passwordRules"
             label="Пароль"
             background-color="#F7F6FF"
           ></v-text-field>
@@ -60,21 +58,14 @@
 </template>
 
 <script>
+
 export default {
   data: () => ({
     validSignIn: true,
     signInData: {
       username: null,
       password: null
-    },
-    usernameRules: [
-      valid => !!valid || 'Поле не заполнено',
-      valid => (valid && valid.length <= 10) || 'Name must be less than 10 characters'
-    ],
-    passwordRules: [
-      valid => !!valid || 'Поле не заполнено'
-      // valid => /.+@.+\..+/.test(valid) || 'Пароль должен быть валидным'
-    ]
+    }
   }),
   methods: {
     directToPage () {
