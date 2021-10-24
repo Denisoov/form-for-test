@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <v-container
-      class="sign-content d-flex justify-center align-content-center fill-height"
-    >
-      <FormSignIn></FormSignIn>
-    </v-container>
-  </div>
+  <v-container
+    class="d-flex justify-center align-content-center fill-height"
+  >
+    <FormSignIn></FormSignIn>
+  </v-container>
 </template>
 
 <script>
@@ -20,7 +18,4 @@ export default {
 </script>
 
 <style scoped>
-.sign-content {
-  min-height: calc(100vh - 400px);
-}
 </style>
