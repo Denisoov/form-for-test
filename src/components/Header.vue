@@ -2,13 +2,28 @@
     <v-app-bar
       app
       elevation="0"
-      color="#F7F6FF"
+      color="#FEFEFE"
     >
       <v-spacer></v-spacer>
       <div class="menu">
-        <router-link class="link" to="/">Главная</router-link>
-        <router-link class="link" to="/auth">Войти</router-link>
-        <router-link class="link" to="/registration">Регистрация</router-link>
+        <router-link
+          class="link"
+          to="/"
+        >
+          Главная
+        </router-link>
+        <router-link
+          class="link"
+          to="/auth"
+        >
+          Войти
+        </router-link>
+        <router-link
+          class="link"
+          to="/registration"
+        >
+          Регистрация
+        </router-link>
       </div>
     </v-app-bar>
 </template>
@@ -33,10 +48,8 @@ export default {
     margin-right: 50px;
     color: #727272;
   }
-
   .router-link-exact-active {
     color: #FF0036;
   }
-
 }
 </style>
