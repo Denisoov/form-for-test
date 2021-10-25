@@ -29,7 +29,7 @@
         <a
           v-if="TOKEN"
           class="link"
-          to="/auth"
+          @click="logOut()"
         >
           Выход
         </a>
@@ -39,11 +39,18 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   computed: {
     ...mapGetters(['TOKEN'])
+  },
+  methods: {
+    ...mapActions(['LOG_OUT']),
+    async logOut () {
+      await this.LOG_OUT()
+      await this.$router.push('/auth')
+    }
   }
 }
 </script>

@@ -14,6 +14,9 @@ export default new Vuex.Store({
     AUTH_TOKEN (state, token) {
       state.token = token
     },
+    REMOVE_TOKEN (state) {
+      state.token = null
+    },
     RECORD_ERROR (state, err) {
       state.error = err
     },
@@ -29,6 +32,9 @@ export default new Vuex.Store({
           commit('AUTH_TOKEN', res.data.token)
         })
         .catch(err => commit('RECORD_ERROR', err.response.data.error))
+    },
+    LOG_OUT ({ commit }) {
+      commit('REMOVE_TOKEN')
     }
   },
   getters: {
