@@ -13,23 +13,38 @@
           Главная
         </router-link>
         <router-link
+          v-if="!TOKEN"
           class="link"
           to="/auth"
         >
           Войти
         </router-link>
         <router-link
+          v-if="!TOKEN"
           class="link"
           to="/registration"
         >
           Регистрация
         </router-link>
+        <a
+          v-if="TOKEN"
+          class="link"
+          to="/auth"
+        >
+          Выход
+        </a>
       </div>
     </v-app-bar>
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
+
 export default {
+  computed: {
+    ...mapGetters(['TOKEN'])
+  }
 }
 </script>
 

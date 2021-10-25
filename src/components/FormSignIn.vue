@@ -49,7 +49,7 @@
           <v-btn
             text
             color="#c9c9c9"
-            @click="directToPage()"
+            @click="directToPage('/registration')"
             rounded
           >
             У меня нет аккаунта
@@ -75,11 +75,12 @@ export default {
   },
   methods: {
     ...mapActions(['SIGN_IN']),
-    directToPage () {
-      this.$router.push('/registration')
+    directToPage (url) {
+      this.$router.push(url)
     },
-    signIn () {
-      this.SIGN_IN(this.signInData)
+    async signIn () {
+      await this.SIGN_IN(this.signInData)
+      await this.directToPage('/')
     }
   }
 }

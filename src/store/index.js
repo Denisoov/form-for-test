@@ -11,6 +11,9 @@ export default new Vuex.Store({
     userData: null
   },
   mutations: {
+    AUTH_TOKEN (state, token) {
+      state.token = token
+    },
     RECORD_ERROR (state, err) {
       state.error = err
     },
@@ -23,12 +26,13 @@ export default new Vuex.Store({
       api.user.getJwtSingIn(data)
         .then((res) => {
           commit('RESET_ERROR')
-          console.log(res.status)
+          commit('AUTH_TOKEN', res.data.token)
         })
         .catch(err => commit('RECORD_ERROR', err.response.data.error))
     }
   },
   getters: {
-    ERROR: state => state.error
+    ERROR: state => state.error,
+    TOKEN: state => state.token
   }
 })
