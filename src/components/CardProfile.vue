@@ -3,40 +3,39 @@
     <v-row align="center" justify="center">
       <v-col cols="12" lg="4" md="6" sm="8">
         <v-card
+          min-height="225"
           class="pb-5"
+          align="center" justify="center"
         >
-          <div
-            class="d-flex flex-no-wrap justify-space-between"
+          <v-avatar
+            class="ma-6"
+            size="205"
           >
-            <div>
-              <v-card-title
-                class="text-h5"
-                v-text="'Title'"
-              ></v-card-title>
-
-              <v-card-subtitle>
-                {{ 'First name' }}
-              </v-card-subtitle>
-
-              <v-card-actions>
-                <v-btn
-                  class="ml-2 mt-5"
-                  outlined
-                  rounded
-                  small
-                >
-                  START RADIO
-                </v-btn>
-              </v-card-actions>
-            </div>
-            <v-avatar
-              class="ma-3"
-              size="225"
-              tile
-            >
-              <v-img ></v-img>
-            </v-avatar>
-          </div>
+            <v-img src="https://starwars-visualguide.com/assets/img/characters/2.jpg" ></v-img>
+          </v-avatar>
+          <v-card-title class="justify-center">
+            <h5 class="title__value">
+              {{ 'First name' }}
+            </h5>
+          </v-card-title>
+          <v-card-subtitle class="pb-0">
+            О себе
+          </v-card-subtitle>
+          <v-card-text>
+            {{ '-' }}
+          </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                class="mt-5 mr-5"
+                outlined
+                disabled
+                rounded
+                small
+              >
+                ИЗМЕНИТЬ
+              </v-btn>
+            </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -45,10 +44,16 @@
 
 <script>
 export default {
-  name: 'CardProfile'
 }
 </script>
 
-<style scoped>
-
+<style>
+  .v-card__subtitle {
+    font-family: 'Montserrat-Medium', 'sans-serif';
+  }
+  .title__value {
+    font-family: 'Montserrat-Bold', 'sans-serif';
+    letter-spacing: 0;
+    text-align: center;
+  }
 </style>
