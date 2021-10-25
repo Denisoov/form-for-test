@@ -27,6 +27,9 @@ export default new Vuex.Store({
     },
     MESSAGE_AFTER_LOG_IN (state, message) {
       state.message = message
+    },
+    CLEAR_MESSAGE (state) {
+      state.message = null
     }
   },
   actions: {
@@ -42,17 +45,20 @@ export default new Vuex.Store({
     LOG_IN ({ commit }, user) {
       api.user.createAccount(user)
         .then(res => {
-          commit('MESSAGE_AFTER_LOG_IN', res.data)
+          commit('MESSAGE_AFTER_LOG_IN', res.data.message)
           router.push('/auth')
         })
     },
     LOG_OUT ({ commit }) {
       commit('REMOVE_TOKEN')
+    },
+    RESET_MESSAGE ({ commit }) {
+      commit('CLEAR_MESSAGE')
     }
   },
   getters: {
     ERROR: state => state.error,
     TOKEN: state => state.token,
-    MESSAGE: state => state.token
+    MESSAGE: state => state.message
   }
 })

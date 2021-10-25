@@ -2,6 +2,25 @@
   <v-app>
     <Header></Header>
     <v-main>
+      <v-snackbar
+        right
+        top
+        v-model="snackbar"
+        :timeout="1000"
+      >
+        {{ MESSAGE }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="pink"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
       <transition name="slide-fade">
         <router-view/>
       </transition>
@@ -12,10 +31,30 @@
 <script>
 
 import Header from '@/components/Header'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  data: () => ({
+    snackbar: false
+  }),
   components: {
     Header
+  },
+  watch: {
+    MESSAGE (newVal) {
+      this.snackbar = !!newVal
+    },
+    snackbar (newVal) {
+      setTimeout(() => {
+        this.RESET_MESSAGE()
+      }, 2000)
+    }
+  },
+  computed: {
+    ...mapGetters(['MESSAGE'])
+  },
+  methods: {
+    ...mapActions(['RESET_MESSAGE'])
   }
 }
 </script>
