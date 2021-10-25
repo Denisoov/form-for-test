@@ -12,7 +12,14 @@
         lazy-validation
         class="sign-form"
       >
-        <h1 class="form__title">Регистрация</h1>
+        <h1
+          class="form__title"
+        >
+          Регистрация
+        </h1>
+        <slot>
+          <span class="message__error">{{ ERROR ? ERROR : '' }}</span>
+        </slot>
         <v-text-field
           id="username"
           append-icon="mdi-account"
@@ -56,7 +63,7 @@
 <script>
 
 import { Validation } from '@/services/validation'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data: () => ({
@@ -67,6 +74,9 @@ export default {
       password: null
     }
   }),
+  computed: {
+    ...mapGetters(['ERROR'])
+  },
   methods: {
     ...mapActions(['LOG_IN']),
     directToPage () {

@@ -44,7 +44,7 @@ export default {
     MESSAGE (newVal) {
       this.snackbar = !!newVal
     },
-    snackbar (newVal) {
+    snackbar () {
       setTimeout(() => {
         this.RESET_MESSAGE()
       }, 2000)

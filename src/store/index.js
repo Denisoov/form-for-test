@@ -48,9 +48,13 @@ export default new Vuex.Store({
           commit('MESSAGE_AFTER_LOG_IN', res.data.message)
           router.push('/auth')
         })
+        .catch(err => commit('RECORD_ERROR', err.response.data.error))
     },
     LOG_OUT ({ commit }) {
       commit('REMOVE_TOKEN')
+    },
+    CLEAR_ERROR ({ commit }) {
+      commit('RESET_ERROR')
     },
     RESET_MESSAGE ({ commit }) {
       commit('CLEAR_MESSAGE')
