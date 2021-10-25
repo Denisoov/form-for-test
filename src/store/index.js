@@ -36,11 +36,16 @@ export default new Vuex.Store({
     SIGN_IN ({ commit }, data) {
       api.user.getJwtSingIn(data)
         .then(res => {
-          commit('AUTH_TOKEN', res.data.token)
+          const token = res.data.token
+          commit('AUTH_TOKEN', token)
+          localStorage.setItem('jwtToken', JSON.stringify(token))
           router.push('/')
           commit('RESET_ERROR')
         })
         .catch(err => commit('RECORD_ERROR', err.response.data.error))
+    },
+    CURRENT_SESSION ({ commit }, token) {
+      commit('AUTH_TOKEN', token)
     },
     LOG_IN ({ commit }, user) {
       api.user.createAccount(user)

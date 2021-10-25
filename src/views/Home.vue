@@ -1,15 +1,17 @@
 <template>
-  <hello-world />
+  <hello-world v-if="!TOKEN" />
 </template>
 
 <script>
 import HelloWorld from '../components/HelloWorld'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Home',
-
   components: {
     HelloWorld
+  },
+  computed: {
+    ...mapGetters(['TOKEN'])
   }
 }
 </script>

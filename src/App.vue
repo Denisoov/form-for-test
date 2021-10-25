@@ -34,6 +34,9 @@ import Header from '@/components/Header'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  created () {
+    this.checkToken()
+  },
   data: () => ({
     snackbar: false
   }),
@@ -54,7 +57,11 @@ export default {
     ...mapGetters(['MESSAGE'])
   },
   methods: {
-    ...mapActions(['RESET_MESSAGE'])
+    ...mapActions(['CURRENT_SESSION', 'RESET_MESSAGE']),
+    checkToken () {
+      const token = JSON.parse(localStorage.getItem('jwtToken'))
+      if (token) this.CURRENT_SESSION(token)
+    }
   }
 }
 </script>

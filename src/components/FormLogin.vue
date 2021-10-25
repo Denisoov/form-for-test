@@ -50,7 +50,7 @@
         <v-btn
           text
           color="#c9c9c9"
-          @click="directToPage()"
+          @click="directToPage('/auth')"
           rounded
         >
           У меня есть аккаунт
@@ -78,9 +78,10 @@ export default {
     ...mapGetters(['ERROR'])
   },
   methods: {
-    ...mapActions(['LOG_IN']),
-    directToPage () {
-      this.$router.push('/auth')
+    ...mapActions(['LOG_IN', 'CLEAR_ERROR']),
+    directToPage (url) {
+      if (this.ERROR) this.CLEAR_ERROR()
+      this.$router.push(url)
     },
     logIn () {
       this.LOG_IN(this.loginData)
