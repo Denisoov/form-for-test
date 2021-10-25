@@ -1,7 +1,5 @@
 <template>
-  <v-container
-    class="d-flex justify-center align-content-center fill-height"
-  >
+  <v-container class="fill-height">
     <FormSignIn></FormSignIn>
   </v-container>
 </template>

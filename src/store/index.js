@@ -57,6 +57,7 @@ export default new Vuex.Store({
     },
     LOG_OUT ({ commit }) {
       commit('REMOVE_TOKEN')
+      localStorage.removeItem('jwtToken')
     },
     CLEAR_ERROR ({ commit }) {
       commit('RESET_ERROR')

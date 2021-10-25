@@ -1,11 +1,6 @@
 <template>
-  <v-row class="d-flex justify-center align-content-center fill-height">
-    <v-col
-      cols="12"
-      lg="4"
-      md="6"
-      sm="8"
-    >
+  <v-row justify="center" align="center">
+    <v-col cols="12" lg="4" md="6" sm="8">
       <v-form
         ref="form"
         v-model="validSignIn"
