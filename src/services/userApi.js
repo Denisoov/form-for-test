@@ -1,15 +1,7 @@
-import axios from 'axios'
-
-const BASE_URL = 'http://localhost:8080'
-
-const userApi = axios.create({
-  baseURL: BASE_URL
-})
-
-export default function () {
+export default function (base) {
   return {
-    singIn (data) {
-      return userApi.post('/login/', data)
+    getJwtSingIn (data) {
+      return base.post('/login/', data)
     }
   }
 }

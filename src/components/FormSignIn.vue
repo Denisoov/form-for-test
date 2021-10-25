@@ -10,7 +10,6 @@
       >
         <v-form
           ref="signIn"
-          v-model="validSignIn"
           lazy-validation
           class="sign-form"
         >
@@ -19,6 +18,9 @@
           >
             Вход в аккаунт
           </h1>
+          <slot>
+            <span class="message__error">{{ ERROR ? ERROR : '' }}</span>
+          </slot>
           <v-text-field
             id="username"
             append-icon="mdi-account"
@@ -27,6 +29,7 @@
             rounded
             background-color="#F7F6FF"
           ></v-text-field>
+
           <v-text-field
             rounded
             append-icon="mdi-lock"
@@ -34,16 +37,15 @@
             label="Пароль"
             background-color="#F7F6FF"
           ></v-text-field>
-
           <v-btn
             color="success"
             class="mr-4"
             rounded
             outlined
+            @click="signIn()"
           >
             Войти
           </v-btn>
-
           <v-btn
             text
             color="#c9c9c9"
@@ -59,17 +61,25 @@
 
 <script>
 
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   data: () => ({
-    validSignIn: true,
     signInData: {
       username: null,
       password: null
     }
   }),
+  computed: {
+    ...mapGetters(['ERROR'])
+  },
   methods: {
+    ...mapActions(['SIGN_IN']),
     directToPage () {
       this.$router.push('/registration')
+    },
+    signIn () {
+      this.SIGN_IN(this.signInData)
     }
   }
 }
