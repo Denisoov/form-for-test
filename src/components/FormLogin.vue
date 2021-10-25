@@ -35,6 +35,7 @@
           class="mr-4"
           outlined
           rounded
+          @click="logIn()"
         >
           Зарегистрироваться
         </v-btn>
@@ -55,6 +56,7 @@
 <script>
 
 import { Validation } from '@/services/validation'
+import { mapActions } from 'vuex'
 
 export default {
   data: () => ({
@@ -66,8 +68,12 @@ export default {
     }
   }),
   methods: {
+    ...mapActions(['LOG_IN']),
     directToPage () {
       this.$router.push('/auth')
+    },
+    logIn () {
+      this.LOG_IN(this.loginData)
     }
   }
 }

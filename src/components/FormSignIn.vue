@@ -71,16 +71,15 @@ export default {
     }
   }),
   computed: {
-    ...mapGetters(['ERROR'])
+    ...mapGetters(['ERROR', 'TOKEN'])
   },
   methods: {
     ...mapActions(['SIGN_IN']),
     directToPage (url) {
       this.$router.push(url)
     },
-    async signIn () {
-      await this.SIGN_IN(this.signInData)
-      await this.directToPage('/')
+    signIn () {
+      this.SIGN_IN(this.signInData)
     }
   }
 }
