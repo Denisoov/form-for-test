@@ -1,10 +1,7 @@
-export default function (base) {
+export default function (user) {
   return {
-    getJwtSingIn (data) {
-      return base.post('/login/', data)
-    },
-    createAccount (data) {
-      return base.post('/register/', data)
+    getDataOfUser () {
+      return user.get('/about/')
     }
   }
 }

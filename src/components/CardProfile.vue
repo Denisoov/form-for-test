@@ -11,18 +11,18 @@
             class="ma-6"
             size="205"
           >
-            <v-img src="https://starwars-visualguide.com/assets/img/characters/2.jpg" ></v-img>
+            <v-img :src="!!USER_DATA.avatar ? USER_DATA.avatar : ''" ></v-img>
           </v-avatar>
           <v-card-title class="justify-center">
             <h5 class="title__value">
-              {{ 'First name' }}
+              {{ !!USER_DATA.username ? USER_DATA.username : '' }}
             </h5>
           </v-card-title>
           <v-card-subtitle class="pb-0">
             О себе
           </v-card-subtitle>
           <v-card-text>
-            {{ '-' }}
+            {{ !!USER_DATA.about ? USER_DATA.about : 'Информация отсутствует' }}
           </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -43,7 +43,19 @@
 </template>
 
 <script>
+
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
+  created () {
+    this.GET_DATA_USER()
+  },
+  computed: {
+    ...mapGetters(['USER_DATA'])
+  },
+  methods: {
+    ...mapActions(['GET_DATA_USER'])
+  }
 }
 </script>
 
