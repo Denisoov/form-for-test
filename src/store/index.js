@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
 import api from '@/services/api'
 import router from '@/router/index'
+import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
@@ -75,7 +75,7 @@ export default new Vuex.Store({
     // Получаем информацию о пользователе
     GET_DATA_USER ({ commit, state }) {
       state.loading = true
-      api.authUser.getDataOfUser()
+      api.authUser.getDataOfUser(state.token)
         .then((res) => {
           commit('RECORD_USER_DATA', res.data)
           state.loading = false

@@ -11,10 +11,7 @@ const base = axios.create({
 
 // Экземпляр для авторизованного пользователя
 const user = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwtToken'))}`
-  }
+  baseURL: BASE_URL
 })
 
 export default {
