@@ -1,16 +1,16 @@
 <template>
-  <hello-world v-if="!TOKEN" />
+  <Preview v-if="!TOKEN" />
   <CardProfile v-else />
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld'
+import Preview from '@/components/Preview'
 import CardProfile from '@/components/CardProfile'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    HelloWorld,
+    Preview,
     CardProfile
   },
   computed: {
