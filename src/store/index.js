@@ -10,6 +10,7 @@ export default new Vuex.Store({
     error: null,
     message: null,
     token: null,
+    loading: false,
     userData: {
       username: null,
       avatar: null,
@@ -22,6 +23,11 @@ export default new Vuex.Store({
     },
     REMOVE_TOKEN (state) {
       state.token = null
+    },
+    REMOVE_USER_DATA (state) {
+      Object.keys(state.userData).forEach(function (el) {
+        state.userData[el] = null
+      })
     },
     RECORD_ERROR (state, err) {
       state.error = err
@@ -45,8 +51,8 @@ export default new Vuex.Store({
       api.guest.getJwtSingIn(data)
         .then(res => {
           const token = res.data.token
-          commit('AUTH_TOKEN', token)
           localStorage.setItem('jwtToken', JSON.stringify(token))
+          commit('AUTH_TOKEN', token)
           router.push('/')
           commit('RESET_ERROR')
         })
@@ -67,19 +73,24 @@ export default new Vuex.Store({
         .catch(err => commit('RECORD_ERROR', err.response.data.error))
     },
     // Получаем информацию о пользователе
-    GET_DATA_USER ({ commit }) {
+    GET_DATA_USER ({ commit, state }) {
+      state.loading = true
       api.authUser.getDataOfUser()
         .then((res) => {
           commit('RECORD_USER_DATA', res.data)
+          state.loading = false
         })
         .catch((err) => {
           console.log(err.response)
         })
     },
     // Деавторизуем пользователя
-    LOG_OUT ({ commit }) {
+    LOG_OUT ({ commit, state }) {
       commit('REMOVE_TOKEN')
+      commit('REMOVE_USER_DATA')
       localStorage.removeItem('jwtToken')
+      console.log(state)
+      console.log(localStorage.getItem('jwtToken'))
     },
     // Очищаем ошибки
     CLEAR_ERROR ({ commit }) {
@@ -94,6 +105,7 @@ export default new Vuex.Store({
     ERROR: state => state.error,
     TOKEN: state => state.token,
     MESSAGE: state => state.message,
-    USER_DATA: state => state.userData
+    USER_DATA: state => state.userData,
+    LOADING: state => state.loading
   }
 })
