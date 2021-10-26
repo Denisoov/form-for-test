@@ -89,8 +89,6 @@ export default new Vuex.Store({
       commit('REMOVE_TOKEN')
       commit('REMOVE_USER_DATA')
       localStorage.removeItem('jwtToken')
-      console.log(state)
-      console.log(localStorage.getItem('jwtToken'))
     },
     // Очищаем ошибки
     CLEAR_ERROR ({ commit }) {

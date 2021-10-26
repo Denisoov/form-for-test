@@ -57,6 +57,9 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  created () {
+    this.CLEAR_ERROR()
+  },
   data: () => ({
     signInData: {
       username: null,
@@ -67,7 +70,7 @@ export default {
     ...mapGetters(['ERROR', 'TOKEN'])
   },
   methods: {
-    ...mapActions(['SIGN_IN']),
+    ...mapActions(['SIGN_IN', 'CLEAR_ERROR']),
     directToPage (url) {
       this.$router.push(url)
     },

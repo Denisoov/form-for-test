@@ -16,7 +16,6 @@
           <span class="message__error">{{ ERROR ? ERROR : '' }}</span>
         </slot>
         <v-text-field
-          id="username"
           append-icon="mdi-account"
           v-model="loginData.username"
           :rules="Validation.usernameRules"
@@ -61,6 +60,9 @@ import { Validation } from '@/services/validation'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  created () {
+    this.CLEAR_ERROR()
+  },
   data: () => ({
     validSignIn: true,
     Validation,
