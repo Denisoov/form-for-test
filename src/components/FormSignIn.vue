@@ -21,6 +21,7 @@
             label="Логин"
             rounded
             background-color="#F7F6FF"
+            @keyup.enter="signIn()"
           ></v-text-field>
 
           <v-text-field
@@ -28,7 +29,9 @@
             append-icon="mdi-lock"
             v-model="signInData.password"
             label="Пароль"
+            type="password"
             background-color="#F7F6FF"
+            @keyup.enter="signIn()"
           ></v-text-field>
           <v-btn
             color="success"
