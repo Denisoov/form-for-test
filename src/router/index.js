@@ -39,4 +39,17 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  const currentUser = JSON.parse(localStorage.getItem('jwtToken'))
+  if (to.matched.some(record => record.meta.guest)) {
+    if (!currentUser) {
+      next()
+    } else {
+      next({ name: 'Home' })
+    }
+  } else {
+    next()
+  }
+})
+
 export default router

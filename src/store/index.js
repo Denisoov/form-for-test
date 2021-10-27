@@ -85,10 +85,11 @@ export default new Vuex.Store({
         })
     },
     // Деавторизуем пользователя
-    LOG_OUT ({ commit, state }) {
-      commit('REMOVE_TOKEN')
-      commit('REMOVE_USER_DATA')
-      localStorage.removeItem('jwtToken')
+    async LOG_OUT ({ commit, state }) {
+      await localStorage.removeItem('jwtToken')
+      await router.push('/auth')
+      await commit('REMOVE_TOKEN')
+      await commit('REMOVE_USER_DATA')
     },
     // Очищаем ошибки
     CLEAR_ERROR ({ commit }) {
