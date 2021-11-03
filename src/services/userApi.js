@@ -1,8 +1,8 @@
 export default function (user) {
   return {
-    getDataOfUser (token) {
+    async getDataOfUser (token) {
       user.defaults.headers.common.Authorization = `Bearer ${token}`
-      return user.get('/about/')
+      return await user.get('/about/')
     }
   }
 }

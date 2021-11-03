@@ -18,7 +18,7 @@ export const user = {
       state.token = null
     },
     REMOVE_USER_DATA (state) {
-      Object.keys(state.userData).forEach(function (el) {
+      Object.keys(state.userData).forEach((el) => {
         state.userData[el] = null
       })
     },
@@ -54,17 +54,12 @@ export const user = {
         .catch(err => commit('RECORD_ERROR', err.response.data.error))
     },
     // Получаем информацию о пользователе
-    GET_DATA_USER ({ commit, state }) {
+    async GET_DATA_USER ({ commit, state }) {
       try {
-        commit('TOGGLE_LOADING')
-        api.authUser.getDataOfUser(state.token)
-          .then((res) => {
-            commit('RECORD_USER_DATA', res.data)
-            commit('TOGGLE_LOADING')
-          })
-          .catch((err) => {
-            console.log(err.response)
-          })
+        await commit('TOGGLE_LOADING')
+        const data = await api.authUser.getDataOfUser(state.token)
+        await commit('RECORD_USER_DATA', data.data)
+        await commit('TOGGLE_LOADING')
       } catch (err) {
         commit('MESSAGE_AFTER_LOG_IN', err)
       }
